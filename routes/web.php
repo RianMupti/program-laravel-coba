@@ -14,13 +14,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
-
-// route::match(['get', 'post'], '/home', function () {
-//     return 'ini halaman home';
-// });
-
-Route::get('/home', function () {
-    return 'coba home';
+    return view('index');
 });
