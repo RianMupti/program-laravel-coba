@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CrudController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('index');
 });
+
+// Route::get('/crud', function () {
+//     return view('crud');
+// });
+
+Route::get('/crud', [CrudController::class, 'index']);
+Route::get('/crud/tambah', [CrudController::class, 'create']);
