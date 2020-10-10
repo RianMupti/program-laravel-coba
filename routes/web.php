@@ -16,11 +16,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('index');
-});
+})->name('home');
 
 // Route::get('/crud', function () {
 //     return view('crud');
 // });
 
-Route::get('/crud', [CrudController::class, 'index']);
-Route::get('/crud/tambah', [CrudController::class, 'create']);
+Route::get('/crud', [CrudController::class, 'index'])->name('crud');
+Route::get('/crud/tambah', [CrudController::class, 'create'])->name('crud.tambah');
+Route::post('/crud/simpan', [CrudController::class, 'store'])->name('crud.simpan');

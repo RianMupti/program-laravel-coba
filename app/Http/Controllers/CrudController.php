@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CrudController extends Controller
 {
@@ -13,7 +14,9 @@ class CrudController extends Controller
      */
     public function index()
     {
-        return view('crud');
+        $data_barang = DB::table('data_barang')->get();
+
+        return view('crud', ['data_barang' => $data_barang]);
     }
 
     /**
@@ -34,7 +37,25 @@ class CrudController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $request->validate([
+            'kode_barang' => 'required|unique:data_barang,kode_barang',
+            'nama_barang' => 'required',
+        ]);
+        // dd($request->all());
+
+        // DB::insert('insert into data_barang (kode_barang, nama_barang) values (?, ?)', [$request->kode_barang, $request->nama_barang]);
+
+        // query builder
+        DB::table('data_barang')->insert([
+            [
+                'kode_barang' => $request->kode_barang,
+                'nama_barang' => $request->nama_barang
+            ],
+            // ['email' => 'dayle@example.com', 'votes' => 0],
+        ]);
+
+        return redirect()->route('crud')->with('status', 'Data berhasil ditambahkan!');
     }
 
     /**
