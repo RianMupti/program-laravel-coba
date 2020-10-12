@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+
 class CrudController extends Controller
 {
     /**
@@ -14,7 +15,7 @@ class CrudController extends Controller
      */
     public function index()
     {
-        $data_barang = DB::table('data_barang')->get();
+        $data_barang = DB::table('data_barang')->paginate(2);
 
         return view('crud', ['data_barang' => $data_barang]);
     }
@@ -100,6 +101,8 @@ class CrudController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::table('data_barang')->where('id', $id)->delete();
+
+        return redirect()->back()->with('status', 'Data berhasil dihapus!');
     }
 }
