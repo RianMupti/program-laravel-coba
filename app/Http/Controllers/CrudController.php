@@ -40,8 +40,8 @@ class CrudController extends Controller
     {
 
         $request->validate([
-            'kode_barang' => 'required|unique:data_barang,kode_barang',
-            'nama_barang' => 'required',
+            'kode_barang' => 'required|unique:data_barang,kode_barang|max:10|min:3',
+            'nama_barang' => 'required|max:100|min:3',
         ]);
         // dd($request->all());
 
