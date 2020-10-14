@@ -36,7 +36,7 @@
                         <td>{{ $data->kode_barang }}</td>
                         <td>{{ $data->nama_barang }}</td>
                         <td>
-                            <a href="#" class="badge badge-success">Edit</a>
+                            <a href="{{ route('crud.edit', [$data->id]) }}" class="badge badge-success">Edit</a>
                         <a href="#" data-id="{{ $data->id }}" class="badge badge-danger swal-confirm">
                         <form action="{{ route('crud.hapus', [$data->id]) }}" id="delete{{ $data->id }}" method="POST">
                                 @csrf

@@ -24,5 +24,7 @@ Route::get('/', function () {
 
 Route::get('/crud', [CrudController::class, 'index'])->name('crud');
 Route::get('/crud/tambah', [CrudController::class, 'create'])->name('crud.tambah');
-Route::post('/crud/simpan', [CrudController::class, 'store'])->name('crud.simpan');
-Route::delete('/crud/delete/{id}', [CrudController::class, 'destroy'])->name('crud.hapus');
+Route::post('/crud', [CrudController::class, 'store'])->name('crud.simpan');
+Route::delete('/crud/{id}', [CrudController::class, 'destroy'])->name('crud.hapus');
+Route::get('/crud/{id}/edit', [CrudController::class, 'edit'])->name('crud.edit');
+Route::patch('/crud/{id}', [CrudController::class, 'update'])->name('crud.update');

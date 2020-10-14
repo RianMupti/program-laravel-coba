@@ -8,6 +8,14 @@ use Illuminate\Support\Facades\DB;
 
 class CrudController extends Controller
 {
+    //validation
+    private function _validation(Request $request)
+    {
+        $request->validate([
+            'kode_barang' => 'required|unique:data_barang,kode_barang|max:10|min:3',
+            'nama_barang' => 'required|max:100|min:3',
+        ]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -38,11 +46,8 @@ class CrudController extends Controller
      */
     public function store(Request $request)
     {
+        $this->_validation($request);
 
-        $request->validate([
-            'kode_barang' => 'required|unique:data_barang,kode_barang|max:10|min:3',
-            'nama_barang' => 'required|max:100|min:3',
-        ]);
         // dd($request->all());
 
         // DB::insert('insert into data_barang (kode_barang, nama_barang) values (?, ?)', [$request->kode_barang, $request->nama_barang]);
@@ -78,7 +83,9 @@ class CrudController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data_barang = DB::table('data_barang')->where('id', $id)->first();
+
+        return view('crud-edit-data', compact('data_barang'));
     }
 
     /**
@@ -90,7 +97,14 @@ class CrudController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->_validation($request);
+        // dd($request->all());
+        DB::table('data_barang')->where('id', $id)->update([
+            'kode_barang' => $request->kode_barang,
+            'nama_barang' => $request->nama_barang,
+        ]);
+
+        return redirect()->route('crud')->with('status', 'Data berhasil di ubah');
     }
 
     /**
