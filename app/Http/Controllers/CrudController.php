@@ -23,7 +23,7 @@ class CrudController extends Controller
      */
     public function index()
     {
-        $data_barang = DB::table('data_barang')->paginate(2);
+        $data_barang = DB::table('data_barang')->paginate(4);
 
         return view('crud', ['data_barang' => $data_barang]);
     }

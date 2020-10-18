@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="section-body">
-    ini halaman content
+    ini halaman content {{Auth::user()->name}}
 </div>
 @endsection
 
