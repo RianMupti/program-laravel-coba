@@ -15,6 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', function () {
+    return view('welcome');
+});
+
 Route::group(['middleware' => ['SudahLogin']], function () {
     Route::post('/', [otentikasi\OtentikasiController::class, 'login'])->name('login');
     Route::get('/', [otentikasi\OtentikasiController::class, 'index'])->name('index');
