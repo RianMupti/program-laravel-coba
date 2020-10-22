@@ -2,6 +2,8 @@
 
 @section('title', 'Crud')
 
+@section('crud', 'active')
+
 @section('content')
 <div class="section-body">
     <div class="row">
