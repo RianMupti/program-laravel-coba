@@ -18,10 +18,10 @@
             </ul>
           </li> --}}
           <li class="menu-header">MENU</li>
-          <li class="nav-item dropdown">
+          <li class="nav-item dropdown @yield('Saplikasi')">
             <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Konfigurasi</span></a>
               <ul class="dropdown-menu">
-              <li class="@yield('Saplikasi')"><a class="nav-l" href="index-0.html">Setup Aplikasi</a></li>
+              <li class="@yield('Saplikasi')"><a class="nav-link" href="{{ route('setup.index') }}">Setup Aplikasi</a></li>
             </ul>
           </li>
           <li class="nav-item dropdown">

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CrudController;
 use App\Http\Controllers\otentikasi;
+use App\Http\Controllers\SetupController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,7 +31,9 @@ route::middleware(['auth'])->group(function () {
         return view('index');
     })->name('home');
     Route::get('crud', [CrudController::class, 'index'])->name('crud');
+    Route::get('setup', [SetupController::class, 'index'])->name('setup.index');
     Route::get('crud/tambah', [CrudController::class, 'create'])->name('crud.tambah');
+    Route::post('setup/tambah', [SetupController::class, 'store'])->name('setup.store');
     Route::post('crud', [CrudController::class, 'store'])->name('crud.simpan');
     Route::delete('crud/{id}', [CrudController::class, 'destroy'])->name('crud.hapus');
     Route::get('crud/{id}/edit', [CrudController::class, 'edit'])->name('crud.edit');
