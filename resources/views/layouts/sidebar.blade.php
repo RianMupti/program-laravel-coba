@@ -7,24 +7,32 @@
         <a href="index.html">St</a>
       </div>
       <ul class="sidebar-menu">
-          <li class="menu-header">Dashboard</li>
-          <li class="nav-item dropdown">
-            <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Dashboard</span></a>
-            <ul class="dropdown-menu">
+        <li class="@yield('dashboard')"><a class="nav-link" href="{{ route('home') }}"><i class="far fa-square"></i> <span>Dashboard</span></a></li>
+
+          {{-- <li class="menu-header">Dashboard</li> --}}
+          {{-- <li class="nav-item dropdown">
+            <a href="#" class="active" class="nav-link "><i class="fas fa-fire"></i><span>Dashboard</span></a>
+              <ul class="dropdown-menu">
               <li><a class="nav-link" href="index-0.html">General Dashboard</a></li>
               <li><a class="nav-link" href="index.html">Ecommerce Dashboard</a></li>
             </ul>
-          </li>
-          <li class="menu-header">Starter</li>
+          </li> --}}
+          <li class="menu-header">MENU</li>
           <li class="nav-item dropdown">
-            <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Layout</span></a>
+            <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Konfigurasi</span></a>
+              <ul class="dropdown-menu">
+              <li class="@yield('Saplikasi')"><a class="nav-l" href="index-0.html">Setup Aplikasi</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Master Data</span></a>
             <ul class="dropdown-menu">
               <li><a class="nav-link" href="layout-default.html">Default Layout</a></li>
               <li><a class="nav-link" href="layout-transparent.html">Transparent Sidebar</a></li>
               <li><a class="nav-link" href="layout-top-navigation.html">Top Navigation</a></li>
             </ul>
           </li>
-          <li class="active"><a class="nav-link" href="{{ route('crud') }}"><i class="far fa-square"></i> <span>Crud</span></a></li>
+          <li class="@yield('crud')"><a class="nav-link" href="{{ route('crud') }}"><i class="far fa-square"></i> <span>Crud</span></a></li>
           {{-- <li class="nav-item dropdown">
             <a href="#" class="nav-link has-dropdown"><i class="fas fa-th"></i> <span>Bootstrap</span></a>
             <ul class="dropdown-menu">

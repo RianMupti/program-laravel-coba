@@ -2,6 +2,8 @@
 
 @section('title', 'Laravel')
 
+@section('dashboard', 'active')
+    
 @section('content')
 <div class="section-body">
     ini halaman content {{Auth::user()->name}}
