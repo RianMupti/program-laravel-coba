@@ -30,6 +30,7 @@ route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', function () {
         return view('index');
     })->name('home');
+    // Route::resource('Setup', 'SetupController');
     Route::get('crud', [CrudController::class, 'index'])->name('crud');
     Route::get('setup', [SetupController::class, 'index'])->name('setup.index');
     Route::get('crud/tambah', [CrudController::class, 'create'])->name('crud.tambah');
@@ -37,6 +38,8 @@ route::middleware(['auth'])->group(function () {
     Route::post('crud', [CrudController::class, 'store'])->name('crud.simpan');
     Route::delete('crud/{id}', [CrudController::class, 'destroy'])->name('crud.hapus');
     Route::get('crud/{id}/edit', [CrudController::class, 'edit'])->name('crud.edit');
+    Route::get('setup/{setup}/edit', [SetupController::class, 'edit'])->name('setup.edit');
     Route::patch('crud/{id}', [CrudController::class, 'update'])->name('crud.update');
+    Route::patch('setup/{setup}', [SetupController::class, 'update'])->name('setup.update');
     Route::get('logout', [otentikasi\OtentikasiController::class, 'logout'])->name('logout');
 });
