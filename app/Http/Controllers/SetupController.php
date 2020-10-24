@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Models\Setup;
+use App\Models\Setup;
 use Illuminate\Http\Request;
 
 class SetupController extends Controller
@@ -11,8 +11,8 @@ class SetupController extends Controller
     private function _validation(Request $request)
     {
         $request->validate([
-            'nama_aplikasi' => 'required|max:10|min:3',
-            'jumlah_hari_kerja' => 'required|max:100|min:3|integer|size:11',
+            'nama_aplikasi' => 'required|max:100|min:3',
+            'jumlah_hari_kerja' => 'required|min:2|max:999|integer',
         ]);
     }
 
@@ -76,7 +76,8 @@ class SetupController extends Controller
      */
     public function edit(Setup $setup)
     {
-        //
+        // $data = Setup::find(setup);
+        return view('konfigurasi/setup-edit', compact('setup'));
     }
 
     /**
@@ -88,7 +89,10 @@ class SetupController extends Controller
      */
     public function update(Request $request, Setup $setup)
     {
-        //
+        $this->_validation($request);
+        // dd($request->all());
+
+        Setup::where('id', $setup->id)->update(['nama_aplikasi' => $request->nama_aplikasi, 'jumlah_hari_kerja' => $request->jumlah_hari_kerja]);
     }
 
     /**

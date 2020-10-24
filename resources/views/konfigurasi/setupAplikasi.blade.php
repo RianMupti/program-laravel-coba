@@ -29,6 +29,7 @@
                     <tr>
                         <th scope="col">No</th>
                         <th scope="col">Hari Kerja</th>
+                        <th scope="col">Nama Aplikasi</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -37,8 +38,9 @@
                     <tr>
                         <th scope="row">{{ $loop->iteration }}</th>
                         <td>{{ $data->jumlah_hari_kerja }}</td>
+                        <td>{{ $data->nama_aplikasi }}</td>
                         <td>
-                            <a href="{{ route('crud.edit', [$data->id]) }}" class="badge badge-success">Edit</a>
+                            <a href="#" data-id="{{ $data->id }}" class="badge badge-success btn-edit">Edit</a>
                             {{-- <a href="#" data-id="{{ $data->id }}" class="badge badge-danger swal-confirm">
                             <form action="{{ route('crud.hapus', [$data->id]) }}" id="delete{{ $data->id }}"
                                 method="POST">
@@ -108,6 +110,29 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="modal-edit">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Tambah Data</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{{ route('setup.store') }}" method="post" id="form-edit">
+                @csrf
+                <div class="modal-body">
+
+                </div>
+                <div class="modal-footer bg-whitesmoke br">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                    <button type="submit" class="btn btn-primary btn-update">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 @endsection
 
 @push('page-script')
@@ -137,6 +162,51 @@
                 // }
             });
     });
+
+    @if($errors->any())
+        $('#exampleModal').modal('show')
+    @endif
+    
+    $('.btn-edit').on('click', function(){
+        // console.log($(this).data('id'))
+        const id = $(this).data('id')
+        // console.log(id); 
+        $.ajax({
+            url:`setup/${id}/edit`,
+            method:'GET',
+            success: function(data){
+                // console.log(data)
+                $('#modal-edit').find('.modal-body').html(data) //merubah isi html
+                $('#modal-edit').modal('show');
+            },
+            error:function(error){
+                console.log(error);
+            }
+        })
+    })
+
+    $('.btn-update').on('click', function(){
+        const id = $('#form-edit').find('#id_data').val();
+        const formData = $('#form-edit').serialize() //mengambil semua data di form
+        // console.log(formData);
+        // console.log(id);
+        $.ajax({
+            url:`setup/${id}`,
+            method:'PATCH',
+            data: formData,
+            success: function(data){
+                // console.log(data)
+                // $('#modal-edit').find('.modal-body').html(data)
+                $('#modal-edit').modal('show');
+                
+                
+                // window.location.assign('/setup')
+            },
+            error:function(error){
+                console.log(error);
+            }
+        })
+    })
 
 </script>
 @endpush
