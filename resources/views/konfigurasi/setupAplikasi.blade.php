@@ -90,14 +90,14 @@
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Hari Kerja</label>
+                                <label>Jumlah Hari Kerja</label>
                                 <input type="number" name="jumlah_hari_kerja" value="{{ old('jumlah_hari_kerja') }}"
                                     class="form-control @error('jumlah_hari_kerja') is-invalid @enderror">
-                                @error('jumlah_hari_kerja')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                                @enderror
+                                    @error('jumlah_hari_kerja')
+                                        <div class="invalid-feedback" id="invalid">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                             </div>
                         </div>
                     </div>
@@ -115,7 +115,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Tambah Data</h5>
+                <h5 class="modal-title">Edit Data</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -127,7 +127,7 @@
                 </div>
                 <div class="modal-footer bg-whitesmoke br">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                    <button type="submit" class="btn btn-primary btn-update">Simpan</button>
+                    <button type="button" class="btn btn-primary btn-update">Simpan</button>
                 </div>
             </form>
         </div>
@@ -197,13 +197,31 @@
             success: function(data){
                 // console.log(data)
                 // $('#modal-edit').find('.modal-body').html(data)
-                $('#modal-edit').modal('show');
+                $('#modal-edit').modal('hide');
                 
                 
-                // window.location.assign('/setup')
+                window.location.assign('/setup')
             },
-            error:function(error){
-                console.log(error);
+            error:function(err){
+                // console.log(err.responseJSON.errors)
+                // typeof bisa digunakan jika "undifiend"
+                // if(err.status == 422) {
+                // } 
+                if(err.responseJSON.errors['nama_aplikasi'] == null) {
+                    $('#modal-edit').find('[name="nama_aplikasi"]').removeClass('is-invalid').addClass('is-valid')
+                } else {
+                    $('#modal-edit').find('[name="nama_aplikasi"]').addClass('is-invalid')
+                    $('#modal-edit').find('.invalid-feedback').html( err.responseJSON.errors['nama_aplikasi'])
+                }
+
+                // if(err.status == 422) {
+                // } 
+                if(err.responseJSON.errors['jumlah_hari_kerja'] == null) {
+                    $('#modal-edit').find('[name="jumlah_hari_kerja"]').removeClass('is-invalid').addClass('is-valid')
+                } else {
+                    $('#modal-edit').find('[name="jumlah_hari_kerja"]').addClass('is-invalid')
+                    $('#modal-edit').find('.Jkerja').html( err.responseJSON.errors['jumlah_hari_kerja'])
+                }
             }
         })
     })
