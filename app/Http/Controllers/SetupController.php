@@ -12,7 +12,7 @@ class SetupController extends Controller
     {
         $request->validate([
             'nama_aplikasi' => 'required|max:100|min:3',
-            'jumlah_hari_kerja' => 'required|min:2|max:999|integer',
+            'jumlah_hari_kerja' => 'required|min:10|max:999|numeric',
         ]);
     }
 
@@ -92,7 +92,11 @@ class SetupController extends Controller
         $this->_validation($request);
         // dd($request->all());
 
-        Setup::where('id', $setup->id)->update(['nama_aplikasi' => $request->nama_aplikasi, 'jumlah_hari_kerja' => $request->jumlah_hari_kerja]);
+        Setup::where('id', $setup->id)
+            ->update([
+                'nama_aplikasi' => $request->nama_aplikasi,
+                'jumlah_hari_kerja' => $request->jumlah_hari_kerja
+            ]);
     }
 
     /**
