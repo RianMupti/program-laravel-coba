@@ -28,7 +28,7 @@ Route::group(['middleware' => ['SudahLogin']], function () {
 // route::middleware(['CheckLoginMiddleware'])->group(function () {
 route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', function () {
-        return view('index');
+        return view('index', ['isipesan' => "Selamat, Data berhasil disimpan"]);
     })->name('home');
     // Route::resource('Setup', 'SetupController');
     Route::get('crud', [CrudController::class, 'index'])->name('crud');
