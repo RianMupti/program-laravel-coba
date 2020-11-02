@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\CrudController;
+use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\otentikasi;
 use App\Http\Controllers\SetupController;
 use Illuminate\Support\Facades\Route;
+use phpDocumentor\Reflection\Types\Resource_;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -42,4 +46,7 @@ route::middleware(['auth'])->group(function () {
     Route::patch('crud/{id}', [CrudController::class, 'update'])->name('crud.update');
     Route::patch('setup/{setup}', [SetupController::class, 'update'])->name('setup.update');
     Route::get('logout', [otentikasi\OtentikasiController::class, 'logout'])->name('logout');
+
+
+    Route::resource('master-data/karyawan', App\Http\Controllers\MasterData\KaryawanController::class);
 });
