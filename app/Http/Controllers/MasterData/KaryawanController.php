@@ -4,6 +4,7 @@ namespace App\Http\Controllers\MasterData;
 
 use App\Http\Controllers\Controller;
 use App\Models\Karyawan;
+use App\Models\Karyawan_Keluarga;
 use Illuminate\Http\Request;
 
 class KaryawanController extends Controller
@@ -18,9 +19,18 @@ class KaryawanController extends Controller
         $karyawan = Karyawan::find(2);
         $jabatan = Karyawan::find(2)->jabatan;
         // dd($karyawan);
-        echo 'Nama Karyawan :' . $karyawan->nama_karyawan;
-        echo '<br>Jabatan :' . $jabatan->nama_jabatan;
-        echo '<br>Gaji Pokok :' . $jabatan->gaji_pokok;
+        echo 'Nama Karyawan : ' . $karyawan->nama_karyawan;
+        echo '</br>Jabatan : ' . $jabatan->nama_jabatan;
+        echo '</br>Gaji Pokok : ' . $jabatan->gaji_pokok;
+
+        $karyawan = Karyawan::find(2);
+        $keluarga = Karyawan::find(2)->karyawan_keluarga;
+        echo '</br></br>Nama Karyawan : ' . $karyawan->nama;
+        // dd($keluarga);
+        echo "</br> List data keluarga";
+        foreach ($keluarga as $kel) {
+            echo '</br>Nama : ' . $kel->nama . ', hubungan : ' . $kel->hubungan;
+        }
     }
 
     /**
