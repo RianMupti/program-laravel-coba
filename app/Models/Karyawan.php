@@ -16,6 +16,11 @@ class Karyawan extends Model
         return $this->belongsTo('App\Models\Jabatan');
     }
 
+    public function karyawan_details()
+    {
+        return $this->hasOne('App\Models\Karyawan_Details', 'karyawan_id');
+    }
+
     public function karyawan_keluarga()
     {
         return $this->hasMany('App\Models\Karyawan_Keluarga');
