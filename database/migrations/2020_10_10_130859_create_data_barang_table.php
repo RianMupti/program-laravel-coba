@@ -17,7 +17,7 @@ class CreateDataBarangTable extends Migration
             $table->id();
             $table->string('kode_barang', 10);
             $table->string('nama_barang', 100);
-            $table->timestamps(time());
+            $table->timestamps();
         });
     }
 
