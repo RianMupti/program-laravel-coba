@@ -49,4 +49,5 @@ route::middleware(['auth'])->group(function () {
 
 
     Route::resource('master-data/karyawan', App\Http\Controllers\MasterData\KaryawanController::class);
+    Route::resource('master-data/divisi', App\Http\Controllers\MasterData\DivisiController::class);
 });
