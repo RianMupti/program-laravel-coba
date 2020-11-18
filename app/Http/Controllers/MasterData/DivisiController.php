@@ -4,6 +4,8 @@ namespace App\Http\Controllers\MasterData;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Divisi;
+use Illuminate\Support\Facades\DB;
 
 class DivisiController extends Controller
 {
@@ -14,7 +16,13 @@ class DivisiController extends Controller
      */
     public function index()
     {
-        //
+        // $this->authorize('akses_divisi', Divisi::class);
+
+        $divisi = Divisi::get();
+
+        // dd($divisi);
+
+        return view('divisi/divisiIndex', compact('divisi'));
     }
 
     /**
@@ -80,6 +88,8 @@ class DivisiController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::table('divisi')->where('id', $id)->delete();
+
+        return redirect()->back()->with('status', 'Data berhasil dihapus!');
     }
 }
