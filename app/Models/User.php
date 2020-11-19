@@ -59,9 +59,10 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
+    // bikin ndiri
     public function role()
     {
         // return $this->belongsToMany('\App\Models\Role');
-        return $this->belongsToMany('\App\Models\Role', 'akses_user', 'master_akses_id', 'user_id');
+        return $this->belongsToMany('\App\Models\Role', 'role_user', 'role_id', 'user_id');
     }
 }
