@@ -24,6 +24,6 @@ class DivisiPolicy
     }
 
     public function tambah_divisi(User $user) {
-        return $user->name === 'otong';
+        return $user->name === 'rian';
     }
 }

@@ -18,10 +18,14 @@
 
     <div class="row">
         <div class="col-12 col-md-12 col-lg-12">
-            @can('tambah_divisi', Models\Divisi::class)
+            @can('tambah_data')
                 <a href="{{ route('crud.tambah') }}" class="btn btn-icon icon-left btn-primary"><i
                         class="far fa-edit"></i>Tambah Data</a>
             @endcan
+            {{-- @can('tambah_divisi', Models\Divisi::class)
+                <a href="{{ route('crud.tambah') }}" class="btn btn-icon icon-left btn-primary"><i
+                        class="far fa-edit"></i>Tambah Data</a>
+            @endcan --}}
             <hr>
 
             <table class="table table-striped">
