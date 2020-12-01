@@ -34,6 +34,8 @@
                     <li class="@yield('active')"><a class="nav-link" href="{{ url('master-data/divisi') }}">Divisi</a>
                     </li>
                     @endcan
+                    <li class="@yield('active')"><a class="nav-link" href="{{ url('master-data/divisi') }}">Divisi</a>
+                    </li>
                     <li><a class="nav-link" href="layout-transparent.html">Transparent Sidebar</a></li>
                     <li><a class="nav-link" href="layout-top-navigation.html">Top Navigation</a></li>
                 </ul>

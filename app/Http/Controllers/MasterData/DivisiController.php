@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Divisi;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
+use App\Helpers\SiteHelpers;
 
 class DivisiController extends Controller
 {
@@ -18,11 +19,12 @@ class DivisiController extends Controller
     public function index()
     {
         // $this->authorize('akses_divisi', Divisi::class);
+        // dd(SiteHelpers::cek_akses());
 
         // gate
-        if (!Gate::allows('akses')) {
-            return redirect()->route('home');
-        }
+        // if (!Gate::allows('akses')) {
+        //     return redirect()->route('home');
+        // }
 
         $divisi = Divisi::get();
 
