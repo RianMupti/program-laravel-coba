@@ -20,10 +20,10 @@ class DivisiPolicy
     }
 
     public function akses_divisi(User $user) {
-        return $user->username == 'rian';
+        return $user->username == 'miong';
     }
 
     public function tambah_divisi(User $user) {
-        return $user->name === 'rian';
+        return $user->name === 'miong';
     }
 }
